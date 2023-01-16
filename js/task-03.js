@@ -14,13 +14,23 @@ const images = [
 ];
 
 const ulElem = document.querySelector(".gallery");
+const imageElement = images
+  .map(function ({ url, alt }) {
+    return `<li><img src = '${url}' alt = '${alt}' width="320" height='200'></li>`;
+  })
+  .join("");
 
-for (const image of images) {
-  const liElem = document.createElement("li");
-  const imageElem = document.createElement("img");
-  imageElem.src = image.url;
-  imageElem.alt = image.alt;
-  imageElem.width = 640;
-  liElem.appendChild(imageElem);
-  ulElem.appendChild(liElem);
-};
+
+ulElem.insertAdjacentHTML("afterbegin", imageElement);
+
+document.body.style.margin = "0px";
+
+
+ulElem.style.cssText = `display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  `;
